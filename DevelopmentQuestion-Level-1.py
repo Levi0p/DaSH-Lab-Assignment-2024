@@ -16,7 +16,6 @@ def send_request(params):
     """Sends a request to the OpenAI API and returns the response."""
     try:
         print("Requesting completion from OpenAI API...")
-        # OpenAI does not have a Client class; use openai.Completion.create instead
         response = openai.ChatCompletion.create(**params)
         return response
     except Exception as e:
@@ -44,7 +43,6 @@ def set_user_message(user_msg_str, question, tiled=True):
 def main():
     prompt = '''As an expert in computer science, answer this question in one line'''
 
-    # Read questions from the input file
     questions = read_input_file('input.txt')
 
     result = []
@@ -68,7 +66,6 @@ def main():
             entries['Message'] = response['choices'][0]['message']['content']
             result.append(entries)
 
-    # Write the result to a JSON file
     with open("data.json", "w") as json_file:
         json.dump(result, json_file, indent=4)
 
